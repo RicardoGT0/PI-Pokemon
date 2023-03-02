@@ -24,7 +24,7 @@ const {database} = require('./src/database/index.js');
 const PORT = 3001
 
 server.listen(PORT, async () => {
-    const db = await database.sync({ force: false})
+    const db = await database.sync()
     console.log('DataBase Conection', db.config.dialectOptions)
     console.log(`API In Server: http://localhost:${PORT}`)
 })

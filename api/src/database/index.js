@@ -4,6 +4,7 @@ const Pokemon = require('./models/Pokemon');
 const Tipo = require('./models/Tipo');
 const Relationships = require('./models/Relationships');
 const User = require('./models/User');
+const llenarTipos = require('./Utils/downloadTypes');
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const database = new Sequelize(
@@ -11,6 +12,7 @@ const database = new Sequelize(
    {
       logging: false, // set to console.log to see the raw SQL queries
       native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+      force: true,
    }
 );
 
@@ -18,6 +20,7 @@ Pokemon(database)
 Tipo(database)
 User(database)
 Relationships(database)
+llenarTipos(database)
 console.log('DataBase Model = ', database.models);
 
 module.exports = {
