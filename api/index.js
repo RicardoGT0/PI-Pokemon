@@ -18,11 +18,13 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const {database} = require('./src/database/index.js');
 
-// Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
-});
+
+const PORT = 3001
+
+server.listen(PORT, async () => {
+    const db = await database.sync({ force: false})
+    console.log('DataBase Conection', db.config.dialectOptions)
+    console.log(`API In Server: http://localhost:${PORT}`)
+})
