@@ -10,7 +10,7 @@ module.exports = (database) => {
       primaryKey: true,
     },
     Nombre: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
   },
     {
