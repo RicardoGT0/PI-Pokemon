@@ -1,53 +1,49 @@
 const { Router } = require('express');
 const createPokemon = require('../controllers/createPokemon');
-const readAllTypes = require('../controllers/readAllTypes');
 const readPokemonByID = require('../controllers/readPokemonByID');
 const readPokemonByName = require('../controllers/readPokemonByName');
+const routesTypes = require('./routesTypes')
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
+routes.use('/types', routesTypes)
+
+routes.get('/', async (req, res) => {
     const { name } = req.query
     try {
         let respuesta
         if (name)
-            respuesta = readPokemonByName(name)
+            respuesta = await readPokemonByName(name)
         else
-            respuesta = readAllPokemon()
+            respuesta = await readAllPokemon()
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error })
     }
 });
 
-routes.get('/:id', (req, res) => {
+routes.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
-        const respuesta = readPokemonByID(id)
+        const respuesta = await readPokemonByID(id)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error })
     }
 });
 
-routes.post('/', (req, res) => {
+routes.post('/', async (req, res) => {
     const data = req.body
     try {
-        const respuesta = createPokemon(data)
+        const respuesta = await createPokemon(data)
         res.status(201).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error })
     }
 });
 
-routes.get('/types', (req, res) => {
-    try {
-        const respuesta = readAllTypes()
-        res.status(200).json(respuesta)
-    } catch (error) {
-        res.status(400).json({ Error: error })
-    }
-});
+
+
 
 /* routes.delete('/:id', (req, res) => {
     const { id } = req.params
