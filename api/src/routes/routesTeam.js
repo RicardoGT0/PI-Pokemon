@@ -8,7 +8,7 @@ routes.get('/:id', (req, res) => {
         const respuesta = readFavs(id)
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error })
+        res.status(400).json({ Error: error.message })
     }
 });
 
@@ -19,7 +19,7 @@ routes.post('/:id', (req, res) => {
         const respuesta = createFavs(id, poke)
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error })
+        res.status(400).json({ Error: error.message })
     }
 });
 
@@ -30,7 +30,7 @@ routes.delete('/:id', (req, res) => {
         const respuesta = deleteFavs(id, poke)
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error })
+        res.status(400).json({ Error: error.message })
     }
 });
 

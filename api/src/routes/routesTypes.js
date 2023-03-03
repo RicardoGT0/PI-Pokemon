@@ -8,7 +8,7 @@ routes.get('/', async (req, res) => {
         const respuesta = await readAllTypes()
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error })
+        res.status(400).json({ Error: error.message })
     }
 });
 

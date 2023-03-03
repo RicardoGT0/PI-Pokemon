@@ -18,7 +18,7 @@ routes.get('/', async (req, res) => {
             respuesta = await readAllPokemon()
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error })
+        res.status(400).json({ Error: error.message })
     }
 });
 
@@ -28,7 +28,7 @@ routes.get('/:id', async (req, res) => {
         const respuesta = await readPokemonByID(id)
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error })
+        res.status(400).json({ Error: error.message })
     }
 });
 
@@ -38,7 +38,7 @@ routes.post('/', async (req, res) => {
         const respuesta = await createPokemon(data)
         res.status(201).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error })
+        res.status(400).json({ Error: error.message })
     }
 });
 
