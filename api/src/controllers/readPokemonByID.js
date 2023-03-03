@@ -17,7 +17,7 @@ module.exports = async (id) => {
     if (id > 0 && id <= 1008) {
         const { data } = await axios(URL + id)
         
-        tipos = data.types.map(type => type.name)
+        const tipos = data.types.map(t => t.type.name)
         const pok = {
             "ID": data.id,
             "Nombre": data.name,
@@ -32,7 +32,6 @@ module.exports = async (id) => {
             "Peso": data.weight,
             "Tipo": tipos
         }
-        console.log('DATA: ',pok);
         return pok
     }
     throw new Error('ID invalido')
