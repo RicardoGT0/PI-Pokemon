@@ -21,6 +21,8 @@ Tipo(database)
 User(database)
 Relationships(database)
 llenarTipos(database)
+   .then(message => console.log(message))
+   .catch(error => console.log(error))
 console.log('DataBase Model = ', database.models);
 
 module.exports = {
