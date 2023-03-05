@@ -1,13 +1,11 @@
 const { Pokemon } = require("../database")
+const readPokemonByID = require("./readPokemonByID")
 
 module.exports = async (pokemon) => {
     const pokCreado = await Pokemon.create(pokemon)
-    pokCreado.addTipos(pokemon.Tipo)
-    resultado = {
-        ...pokCreado.dataValues,
-        ID: pokCreado.dataValues.ID + 1008
-    }
-    console.log(resultado)
-    return resultado
+    await pokCreado.addTipos(pokemon.Tipo)
+    const id = pokCreado.dataValues.ID + 1008
+    const pok = await readPokemonByID(id)
+    return pok
 }
 
