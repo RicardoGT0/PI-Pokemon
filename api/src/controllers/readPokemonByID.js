@@ -1,5 +1,6 @@
 const axios = require("axios");
-const { Pokemon } = require("../database")
+const { Pokemon, Tipo } = require("../database");
+const extractPokFromConsult = require("./utils/extractPokFromConsult");
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/'
 
@@ -7,11 +8,11 @@ module.exports = async (id) => {
     id = Number(id)
     if (id > 1008) {
         id -= 1008
-        const pok = await Pokemon.findByPk(id)
+        const pok = await Pokemon.findByPk(id, {include:Tipo})
         if (pok === null) {
             throw new Error('No Existe el Pokemon con ese ID!');
         } else {
-            return pok.dataValues
+            return extractPokFromConsult(pok)
         }
     }
     if (id > 0 && id <= 1008) {
