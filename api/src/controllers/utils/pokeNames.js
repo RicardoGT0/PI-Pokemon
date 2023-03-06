@@ -2,16 +2,14 @@ const Axios = require("axios")
 
 const pokeNames = []
 
-const getAllPokeNames = async (Pokemon, URL = 'https://pokeapi.co/api/v2/pokemon') => {
+const getAllPokeNames = async (Pokemon) => {
     //recoleccion de Nombre API
-    const { data } = await Axios(URL)
+    const { data } = await Axios('https://pokeapi.co/api/v2/pokemon?offset=1&limit=1008')
     data.results.forEach(element => {
         if (pokeNames.length < 1008)
             pokeNames.push(element.name)
     });
-    if (data.next != null && pokeNames.length < 1008) {
-        getAllPokeNames(Pokemon, data.next)
-    }
+    
     // recoleccion de nombres DB
     if (pokeNames.length >= 1008) {
         const pokes = await Pokemon.findAll({
