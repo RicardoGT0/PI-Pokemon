@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const createPokemon = require('../controllers/createPokemon');
 const getListPokeNames = require('../controllers/getListPokeNames');
+const readAllPokemon = require('../controllers/readAllPokemon');
 const readPokemonByID = require('../controllers/readPokemonByID');
 const readPokemonByName = require('../controllers/readPokemonByName');
 const routesTypes = require('./routesTypes')
@@ -19,13 +20,13 @@ routes.get('/list', (req, res) => {
 })
 
 routes.get('/', async (req, res) => {
-    const { name } = req.query
+    const { name, page } = req.query
     try {
         let respuesta
         if (name)
             respuesta = await readPokemonByName(name)
         else
-            respuesta = await readAllPokemon()
+            respuesta = await readAllPokemon(page)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
