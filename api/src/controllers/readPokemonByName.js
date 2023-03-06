@@ -4,25 +4,17 @@ const extractPokFromConsult = require("./utils/extractPokFromConsult");
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/'
 
- 
-
 module.exports = async (name) => {
-    // Se hace la consulta buscando lo Pokemon y su tipo correspondiente
-    const pok = await Pokemon.findAll({
+    name=name.toLowerCase()
+    // Se hace la consulta buscando el Pokemon en la DB y su tipo correspondiente
+    const pok = await Pokemon.findOne({
         where: { Nombre: name },
         include: Tipo
     })
-
-    console.log('####', pok.dataValues);
-
-    if (pok !== null) {
-        //Se extrae el tipo para generar un objeto sin informacion adicional
-        if (Array.isArray(pok)) {
-            return pok.map(p => extractPokFromConsult(p))
-        }
-        return extractPokFromConsult(p)
+    //Se extrae el tipo para generar un objeto sin informacion adicional    
+    if (pok!=null) {
+        return extractPokFromConsult(pok)        
     }
-
 
     const { data } = await axios(URL + name)
     if (data) {
