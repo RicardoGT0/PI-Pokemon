@@ -6,41 +6,41 @@ const updateUser = require('../controllers/updateUser');
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
-    const { userName, password } = req.body
+routes.get('/', async (req, res) => {
+    const { UserName, Password } = req.query
     try {
-        const respuesta = readUser(userName, password)
+        const respuesta = await readUser(UserName, Password)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
     }
 });
 
-routes.post('/', (req, res) => {
-    const { userName, password } = req.body
+routes.post('/', async (req, res) => {
+    const { UserName, Password } = req.body
     try {
-        const respuesta = createUser(userName, password)
+        const respuesta = await createUser(UserName, Password)
         res.status(201).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
     }
 });
 
-routes.put('/:id', (req, res) => {
+routes.put('/:id', async (req, res) => {
     const { id } = req.params
-    const { password } = req.body
+    const { Password } = req.body
     try {
-        const respuesta = updateUser(id, password)
+        const respuesta = await updateUser(id, Password)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
     }
 });
 
-routes.delete('/:id', (req, res) => {
+routes.delete('/:id', async (req, res) => {
     const { id } = req.params
     try {
-        const respuesta = deleteUser(id)
+        const respuesta = await deleteUser(id)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
