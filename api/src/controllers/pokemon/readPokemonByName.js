@@ -1,6 +1,6 @@
 const axios = require("axios");
-const { Pokemon, Tipo } = require("../database");
-const extractPokFromConsult = require("./utils/extractPokFromConsult");
+const { Pokemon, Tipo } = require("../../database");
+const extractPokFromConsult = require("../utils/extractPokFromConsult");
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/'
 

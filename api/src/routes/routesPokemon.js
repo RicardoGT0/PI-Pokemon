@@ -1,14 +1,22 @@
 const { Router } = require('express');
-const createPokemon = require('../controllers/createPokemon');
-const getListPokeNames = require('../controllers/getListPokeNames');
-const readAllPokemon = require('../controllers/readAllPokemon');
-const readPokemonByID = require('../controllers/readPokemonByID');
-const readPokemonByName = require('../controllers/readPokemonByName');
-const routesTypes = require('./routesTypes')
+const createPokemon = require('../controllers/pokemon/createPokemon');
+const getListPokeNames = require('../controllers/pokemon/getListPokeNames');
+const readAllPokemon = require('../controllers/pokemon/readAllPokemon');
+const readAllTypes = require('../controllers/pokemon/readAllTypes');
+const readPokemonByID = require('../controllers/pokemon/readPokemonByID');
+const readPokemonByName = require('../controllers/pokemon/readPokemonByName');
+
 
 const routes = Router();
 
-routes.use('/types', routesTypes)
+routes.use('/types', async (req, res) => {
+    try {
+        const respuesta = await readAllTypes()
+        res.status(200).json(respuesta)
+    } catch (error) {
+        res.status(400).json({ Error: error.message })
+    }
+})
 
 routes.get('/list', (req, res) => {
     try {

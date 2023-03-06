@@ -1,6 +1,6 @@
-const { Pokemon } = require("../database")
+const { Pokemon } = require("../../database")
 const readPokemonByID = require("./readPokemonByID")
-const { pokeNames } = require("./utils/pokeNames")
+const { pokeNames } = require("../utils/pokeNames")
 
 module.exports = async (pokemon) => {    
     pokemon.Nombre=pokemon.Nombre.toLowerCase()

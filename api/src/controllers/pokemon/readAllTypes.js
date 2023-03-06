@@ -1,5 +1,5 @@
 
-const { Tipo } = require("../database")
+const { Tipo } = require("../../database")
 
 module.exports = async () => {
     const allTipos = await Tipo.findAll()

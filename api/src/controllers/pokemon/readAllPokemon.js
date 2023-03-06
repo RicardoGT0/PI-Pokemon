@@ -1,5 +1,5 @@
 const readPokemonByID = require("./readPokemonByID")
-const { pokeNames } = require("./utils/pokeNames")
+const { pokeNames } = require("../utils/pokeNames")
 
 module.exports = async (page = 1) => {
     const listaPokes = []
