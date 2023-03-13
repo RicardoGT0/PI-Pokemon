@@ -31,18 +31,17 @@ export default function Profile() {
 
   const updatePassword = async () => {
     try {
-      const { data } = await axios.put('http://localhost:3001/user/' + user.id, {
-        body: { Password: passWord }
-      })
-      alert(data.message)
+      const { data } = await axios.put('http://localhost:3001/user/' + user.id, { Password: passWord })
+      alert(data.Message)
     } catch (error) {
-      alert(error)
+      alert(error.response.data.Error)
     }
   }
 
   const deleteUser = async () => {
-
+    
   }
+
 
   return (
     <div className='divProfile'>
