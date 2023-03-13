@@ -10,7 +10,7 @@
     background-size: contain;
 }
 
-.divImage {
+.divCardImage {
     z-index: -1;
 }
 
@@ -22,7 +22,7 @@
     filter: blur(10px);
 }
 
-.divDescription {
+.divCardDescription {
     display: flex;
     flex-direction: column;
     align-items: center;
