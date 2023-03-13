@@ -1,6 +1,6 @@
 .divProfile {
     background: url('https://static.vecteezy.com/system/resources/previews/012/705/641/non_2x/cartoon-mountain-landscape-with-blue-sky-sun-and-clouds-green-field-meadows-grassland-2d-cartoon-scene-hills-look-like-piramid-free-vector.jpg');
-    
+    /* background: url('https://cdnb.artstation.com/p/assets/images/images/050/632/855/large/isma-perez-laboratorio-oak.jpg?1655306151'); */
 }
 
 .headerProfile {
@@ -37,17 +37,20 @@
 .profileDescription {
     width: min-content;
     text-align: center;
-    display: flex;    
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.labelProfile{
+.labelProfile {
     font-size: xx-large;
     font-style: oblique;
-    color: blue;
+    font-weight: bold;
+    color: black;
     padding: 10px;
+    -webkit-text-stroke: 1px white;
+    
 }
 
 .dangerInputLogin {
@@ -60,10 +63,16 @@
     font-weight: bold;
     border-style: none;
     background: none;
+    -webkit-text-stroke: 1px white;
+    border-radius: 20px;
+    border-color: white;
+    border-style: groove;
+    border-width: 7px;
 }
 
 .buttonProfile:hover {
-    color: red;
+    color: blue;
+    border-color: yellow;
 }
 
 .spanError {
@@ -71,7 +80,7 @@
     text-align: center;
     font-size: larger;
     font-weight: bold;
-    
+
 }
 
 .buttonDeleteProfile {
@@ -80,11 +89,17 @@
     font-weight: bold;
     border-style: none;
     background: none;
-    padding-top: 100px;
+    
+    border-radius: 20px;
+    border-color: white;
+    border-style: groove;
+    border-width: 7px;
 }
 
 .buttonDeleteProfile:hover {
     color: red;
+    border-color: red;
+    -webkit-text-stroke: 1px white;
 }
 
 @media (max-width:420px) {
