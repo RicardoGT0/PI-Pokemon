@@ -68,8 +68,11 @@
     border-color: white;
     border-style: groove;
     border-width: 7px;
+    backdrop-filter: blur(30px);     
 }
-
+.buttonProfile:active {
+    backdrop-filter: blur(10px);   
+}
 .buttonProfile:hover {
     color: blue;
     border-color: yellow;
@@ -94,8 +97,11 @@
     border-color: white;
     border-style: groove;
     border-width: 7px;
+    backdrop-filter: blur(30px); 
 }
-
+.buttonDeleteProfile:active{
+    backdrop-filter: blur(10px); 
+}
 .buttonDeleteProfile:hover {
     color: red;
     border-color: red;

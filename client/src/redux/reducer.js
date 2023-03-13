@@ -2,7 +2,7 @@ import * as action from "./action_type";
 
 const initialState = {
     user: {
-        id: 1,
+        id: 8,
         userName: 'pe@hot.com'
       },
     access: true,

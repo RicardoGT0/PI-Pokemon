@@ -10,7 +10,7 @@ import Login from './components/Login'
 import { useSelector } from 'react-redux'
 import Profile from './components/Profile'
 import Team from './components/Team'
-import FormCreatePokemon from './components/FormCreatePokemon'
+import CreatePokemon from './components/CreatePokemon'
 
 
 function App() {
@@ -52,7 +52,7 @@ function App() {
         />
         <Route
           path="/create"
-          element={<FormCreatePokemon />}
+          element={<CreatePokemon />}
         />
         
       </Routes>
