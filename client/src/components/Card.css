@@ -1,0 +1,36 @@
+.divCard {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    shape-outside: circle();
+    clip-path: circle();
+    background-image: url('/images/back-pokeball.png');
+    background-position: center;
+    background-size: contain;
+}
+
+.divImage {
+    z-index: -1;
+}
+
+.pokeImage {
+    width: 200px;
+}
+
+.blur {
+    filter: blur(10px);
+}
+
+.divDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: -150px;
+    z-index: 2;
+
+    font-size: x-large;
+    font-weight: bolder;
+    -webkit-text-stroke: 1px white;
+}

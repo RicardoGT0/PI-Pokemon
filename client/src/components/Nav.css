@@ -1,0 +1,47 @@
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* align-items: center; */
+  background-color: red;
+  border: white;
+  padding-top: 7px;
+}
+
+.navImage {
+  justify-content: center;
+}
+
+.imgHeader {
+  height: 90px;
+}
+
+.linkBox {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.enlaces {
+  font-style: oblique;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: x-large;
+  font-weight: bolder;
+  color: black;
+  text-decoration: none;
+}
+
+.enlaces:hover {
+  color: white;
+}
+
+.enlacesBoton {
+  border-style: none;
+  background: none;
+}
+
+.enlacesBoton:hover {
+  color: yellow;
+}

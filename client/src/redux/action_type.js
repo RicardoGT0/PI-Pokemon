@@ -1,0 +1,6 @@
+export const ACCESSON = "ACCESSON"
+export const ACCESSOFF = "ACCESSOFF"
+export const GETALLPOKES = "GETALLPOKES"
+export const SETFILTER = "SETFILTER"
+export const SETSORT = "SETSORT"
+export const SETSHOWPOKEMON='SETSHOWPOKEMON'

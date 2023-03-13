@@ -1,0 +1,61 @@
+/* .detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('https://static.vecteezy.com/system/resources/previews/012/705/641/non_2x/cartoon-mountain-landscape-with-blue-sky-sun-and-clouds-green-field-meadows-grassland-2d-cartoon-scene-hills-look-like-piramid-free-vector.jpg')
+} */
+
+.headerDetail {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: black;
+}
+
+.textdetailHeader {
+    text-align: center;
+    color: aliceblue;
+    font-size: xx-large;
+}
+
+.textdetail {
+    text-align: center;
+    color: aliceblue;
+    font-size: xx-large;
+    -webkit-text-stroke: 2px black;
+
+}
+
+.detailBox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    background: url('https://static.vecteezy.com/system/resources/previews/012/705/641/non_2x/cartoon-mountain-landscape-with-blue-sky-sun-and-clouds-green-field-meadows-grassland-2d-cartoon-scene-hills-look-like-piramid-free-vector.jpg');
+}
+
+.divDetailImg{
+    backdrop-filter: blur(30px);   
+    
+}
+.detailImg {
+    border-style: groove;
+    border-color: white;
+    border-radius: 5%;
+    height: fit-content;
+}
+
+.detailDescription {
+    text-align: center;
+    display: flex;
+
+}
+
+@media (max-width:900px) {
+    .detailBox {
+        flex-direction: column;
+    }
+}

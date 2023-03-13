@@ -1,0 +1,141 @@
+ .containerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-image: url("/images/sit_pika.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 110%; */
+
+    width: 65%;
+    height: 120%;
+    
+}
+.containerPikaSit{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    
+}
+.pikaSit{    
+    width: 30%;
+    margin-bottom: -16px;
+    z-index: 1;
+}
+
+.divForm {
+    /* width: 65%; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-style: groove;
+    border-width: 7px;
+    border-color: white;
+    background-color: grey;
+    /* height: 300px; */
+    border-radius: 20px;
+
+}
+
+.divCaptura {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+    padding-right: 10px;
+}
+
+.loginText {
+    display: flex;
+    justify-content: center;
+    font-size: 250%;
+    margin: 20px;
+}
+
+.dangerInputLogin,
+.inputLogin {
+    font-size: large;
+    font-style: oblique;
+    height: 35px;
+    padding: 10px;
+}
+
+.dangerInputLogin {
+    border-color: red;
+}
+
+.labelLogin {
+    font-size: xx-large;
+    font-style: oblique;
+    color: blue;
+    padding: 10px;
+}
+
+.buttonLogin {
+    font-size: xx-large;
+    font-style: oblique;
+    font-weight: bold;
+    border-style: none;
+    background: none;
+    width: fit-content;
+    height: fit-content;
+    padding-bottom: 20px;
+}
+
+.buttonLogin:hover {
+    color: red;
+}
+
+.spanError {
+    color: red;
+    width: fit-content;
+    height: fit-content;
+    ;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+.divError {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:420px) {
+    .loginText{        
+        color: white;  
+        margin: 0px;
+        font-size: 300%;      
+    }
+
+    .divForm {
+        background-image: url('/images/back-pokeball.png');
+        background-size: cover;
+        flex-direction: row;
+        justify-content: center;
+        height: auto;
+    }
+    .labelLogin{
+        color: white;
+    }
+    .divFormInput {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dangerInputLogin,
+    .inputLogin {
+        width: 85%;
+    }
+    .containerForm {
+        background-image:none;
+    }
+}

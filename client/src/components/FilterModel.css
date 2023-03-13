@@ -1,0 +1,17 @@
+.divFilterModel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-evenly;
+    border: 7px;
+    color: black;
+    border-style: groove;
+}
+
+.spanTextFilter {
+    border: 5px;
+    color: black;
+    border-style: groove;
+    width: 100%;
+}

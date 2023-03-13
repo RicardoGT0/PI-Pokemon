@@ -1,0 +1,55 @@
+.divSearchbar {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.divSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.inputSearch {
+    border-radius: 20px;
+    font-size: large;
+    font-style: oblique;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: white;
+    border-style: groove;
+    border-width: 7px;
+}
+
+.divFilter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.filterButton {
+    border-radius: 20px;
+    font-size: large;
+    font-style: oblique;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: white;
+    border-style: groove;
+    border-width: 7px;
+}
+
+.filterButton:hover {
+    border-color: yellow;
+}
+
+.filterButton:active {
+    border-color: yellowgreen;
+}
+
+.searchBarIcon {
+    width: 120px;
+}
