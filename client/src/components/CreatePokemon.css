@@ -17,14 +17,22 @@
     width: 50%;
     
 }
+.divInputCreatePokemon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
 
 .labelError,.labelCreatePokemon{
-    text-align: center;
     font-weight: bold;
     color: white;
     font-size: xx-large;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     -webkit-text-stroke: 2px black;
+    padding-right: 10px;
+    padding-left: 20px;
+
 }
 .labelError{
     color: red;
@@ -38,10 +46,13 @@
     border-color: white;
     border-style: groove;
     border-width: 7px;
+    width: -webkit-fill-available;
+     
 }
 
 .divPreviewImage{
     backdrop-filter: blur(30px); 
+    padding-right: 20px;
 }
 
 .previewImage{
@@ -49,6 +60,10 @@
     border-color: white;
     border-radius: 5%;
     height: fit-content;
+}
+
+.labelTypes{
+    text-align: center;
 }
 
 .divTypes{
@@ -67,6 +82,11 @@
     -webkit-text-stroke: 2px black;
 }
 
+.divButtonCreatePokemon{
+    padding-top: 20px;
+    width: 100%;
+}
+
 .buttonCreatePokemon{
     font-size: xx-large;
     font-style: oblique;
@@ -79,6 +99,7 @@
     border-style: groove;
     border-width: 7px;
     backdrop-filter: blur(30px); 
+    width: 100%;
 }
 
 .buttonCreatePokemon:hover{
@@ -90,4 +111,10 @@
     backdrop-filter: blur(10px);
 }
 
+
+@media (max-width:900px) {
+    .divDetailsPokemon {
+        flex-direction: column;
+    }
+}
 
