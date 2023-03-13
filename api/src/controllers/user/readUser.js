@@ -1,12 +1,13 @@
 const { User } = require("../../database")
 
 module.exports = async (UserName, Password) => {
-    const resp = await User.findOne({
+    const [resp,created] = await User.findOrCreate({
         where: { UserName, Password }
     })
+   
     if (resp === null)
         throw new Error('Nombre de Usuario y/o Contraseña Incorrectos')
-    else {
-        return { ID: resp.dataValues.ID }
+    else {        
+        return { id: resp.dataValues.ID, created:created }
     }
 }

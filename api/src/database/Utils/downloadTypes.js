@@ -1,4 +1,5 @@
 const axios = require("axios")
+const EquivalentTypes = require("../../controllers/utils/EquivalentTypes")
 const URL = 'https://pokeapi.co/api/v2/type'
 
 
@@ -12,7 +13,7 @@ const llenarTipos = async (database) => {
     try {
         const downInfo = await downloadTypes()
         const nombres = downInfo.map(tipo => {
-            return { Nombre: tipo.name }
+            return { Nombre: EquivalentTypes(tipo.name) }
         })
         const resultado = await Tipo.bulkCreate(nombres)
         return 'Llenado de tabla Tipo - completado (' + resultado.length + ')'

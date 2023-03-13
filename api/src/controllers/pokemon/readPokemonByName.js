@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Pokemon, Tipo } = require("../../database");
+const EquivalentTypes = require("../utils/EquivalentTypes");
 const extractPokFromConsult = require("../utils/extractPokFromConsult");
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/'
@@ -18,7 +19,7 @@ module.exports = async (name) => {
 
     const { data } = await axios(URL + name)
     if (data) {
-        const tipos = data.types.map(t => t.type.name)
+        const tipos = data.types.map(t => EquivalentTypes(t.type.name))
         const pok = {
             "ID": data.id,
             "Nombre": data.name,

@@ -6,6 +6,7 @@ const Relationships = require('./models/Relationships');
 const User = require('./models/User');
 const llenarTipos = require('./Utils/downloadTypes');
 const { getAllPokeNames } = require('../controllers/utils/pokeNames');
+const Team = require('./models/Team');
 
 
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
@@ -22,11 +23,11 @@ const database = new Sequelize(
 Pokemon(database)
 Tipo(database)
 User(database)
+Team(database)
 Relationships(database)
 /* llenarTipos(database)
-   .then(message => console.log(message))
-   .catch(error => console.log(error)) */
-   
+   .then(message => console.log('message====> ', message))
+   .catch(error => console.log('error====> ', error)) */
 getAllPokeNames(database.models.Pokemon);
 console.log('DataBase Model = ', database.models);
 

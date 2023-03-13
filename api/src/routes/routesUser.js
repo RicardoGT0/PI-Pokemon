@@ -12,7 +12,7 @@ routes.get('/', async (req, res) => {
         const respuesta = await readUser(UserName, Password)
         res.status(200).json(respuesta)
     } catch (error) {
-        res.status(400).json({ Error: error.message })
+        res.status(400).json({ Error: 'Nombre de Usuario y/o Contraseña Incorrectos' })
     }
 });
 
