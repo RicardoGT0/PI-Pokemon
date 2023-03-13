@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { accessOff } from '../redux/actions';
 import './Profile.css'
 
 export default function Profile() {
@@ -9,6 +10,7 @@ export default function Profile() {
   const { user } = useSelector((state) => state);
   const [passWord, setPassWord] = useState('')
   const [errorPassword, setErrorPassword] = useState(true)
+  const dispatch = useDispatch()
 
   const valPassword = (value) => {
     if (regularPassword.test(value)) {
@@ -39,34 +41,44 @@ export default function Profile() {
   }
 
   const deleteUser = async () => {
-    
+    const response = window.confirm('Seguro que aun te queda camino por recorrer\n¿Quieres dejar de ser un entrenador Pokemon?')
+    if (response) {
+      try {
+        const { data } = await axios.delete('http://localhost:3001/user/' + user.id)
+        alert(data.Message)
+        dispatch(accessOff())
+
+      } catch (error) {
+        alert(error.response.data.Error)
+      }
+    }
   }
 
-
-  return (
-    <div className='divProfile'>
-      <div className='headerProfile'>
-        <h1 className='textProfileHeader'> {user.userName.toUpperCase()}</h1>
-      </div>
-      <div className='ProfileBox'>
-        {/* <div className='divProfileImg'></div> */}
-        <img className='profileImg' src='https://static.wikia.nocookie.net/espokemon/images/1/1b/Rangers_ROZA.png' alt={'Trainers'} />
-        <div className='profileDescription'>
-          <div className='divFormInput'>
-            <label className='labelProfile'>Cambiar Contraseña:</label>
-            <input className={errorPassword ? 'dangerInputLogin' : 'inputLogin'}
-              type="password"
-              name='password'
-              value={passWord}
-              placeholder='Nueva Contraseña'
-              onChange={(e) => valPassword(e.target.value)} />
-            <div className='divError'>
-              {handleErrorAction()}
+  if (user)
+    return (
+      <div className='divProfile'>
+        <div className='headerProfile'>
+          <h1 className='textProfileHeader'> {user.userName.toUpperCase()}</h1>
+        </div>
+        <div className='ProfileBox'>
+          {/* <div className='divProfileImg'></div> */}
+          <img className='profileImg' src='https://static.wikia.nocookie.net/espokemon/images/1/1b/Rangers_ROZA.png' alt={'Trainers'} />
+          <div className='profileDescription'>
+            <div className='divFormInput'>
+              <label className='labelProfile'>Cambiar Contraseña:</label>
+              <input className={errorPassword ? 'dangerInputLogin' : 'inputLogin'}
+                type="password"
+                name='password'
+                value={passWord}
+                placeholder='Nueva Contraseña'
+                onChange={(e) => valPassword(e.target.value)} />
+              <div className='divError'>
+                {handleErrorAction()}
+              </div>
             </div>
+            <button className='buttonDeleteProfile' onClick={deleteUser}>Eliminar Cuenta</button>
           </div>
-          <button className='buttonDeleteProfile' onClick={deleteUser}>Eliminar Cuenta</button>
         </div>
       </div>
-    </div>
-  )
+    )
 }
