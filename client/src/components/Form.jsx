@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './Form.css'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
-import { accessOn, getAllPokes } from '../redux/actions'
+import { accessOn } from '../redux/actions'
 
 
 export default function Form() {
@@ -30,8 +30,7 @@ export default function Form() {
                 alert("¡Tu propia leyenda POKÉMON está a punto de comenzar!\n¡Te espera un mundo de sueños y aventuras con los POKÉMON!\n¡Adelante!  "+ userName)
             else
                 alert(`Hola, estaba deseando verte ${userName}`);
-            navigate("/home");
-            dispatch(getAllPokes())
+            navigate("/home");            
         } catch (error) {
             //error.response.data={Error: 'Nombre de Usuario y/o Contraseña Incorrectos'}
             alert(error.response.data.Error);

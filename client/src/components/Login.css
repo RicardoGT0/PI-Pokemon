@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('/images/back-pokeball.png');;
+    background: url('/images/back-pokeball.png');
+    ;
 }
 
 .textroot {
@@ -13,11 +14,24 @@
 
 }
 
+.divLoading {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+}
+
+.videoLoading {
+    width: 700px;
+}
+
 @media (max-width:420px) {
     .divRoot {
         height: 100vh;
         background: url("https://i.blogs.es/147806/leyendas-pokemon-arceus/1366_2000.jpeg");
         background-position: center;
-        
+
     }
 }
