@@ -1,5 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { addNewPokemon } from '../redux/actions'
 import CheckB from './CheckB'
 import './CreatePokemon.css'
 
@@ -8,6 +11,8 @@ export default function CreatePokemon() {
   const [errors, setErrors] = useState({})
   const [listTypes, setListTypes] = useState([])
   const [checked, setChecked] = useState([]);
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (listTypes.length === 0)
@@ -42,31 +47,30 @@ export default function CreatePokemon() {
   }
 
   const validacion = ({ name, value }) => {
-    let errores = { ...errors }
-    if (name === 'Nombre' && value.length > 30)
-      errores[name] = 'Nombre demasiado largo'
-    else
-      delete errores[name]
+    let cpErrors = { ...errors }
 
-    if ((
-      name === 'Altura' ||
-      name === 'Peso' ||
-      name === 'Vida' ||
-      name === 'Velocidad' ||
-      name === 'Ataque' ||
-      name === 'Defensa' ||
-      name === 'Ataque_Especial' ||
-      name === 'Defensa_Especial') && isNaN(value)) {
-      errores[name] = `${name} debe de ser un Numero`
+    if (name === 'Nombre' && value.length >= 20)
+      cpErrors[name] = 'Nombre demasiado largo'
+    else {
+      if ((
+        name === 'Altura' ||
+        name === 'Peso' ||
+        name === 'Vida' ||
+        name === 'Velocidad' ||
+        name === 'Ataque' ||
+        name === 'Defensa' ||
+        name === 'Ataque_Especial' ||
+        name === 'Defensa_Especial') && isNaN(value)) {
+        cpErrors[name] = `${name} debe de ser un Numero`
+      } else {
+        delete cpErrors[name]
+      }
     }
-    else
-      delete errores[name]
-
-    return errores
+    return cpErrors
   }
 
   const showErrors = () => {
-    const listErrors = Object.keys(errors).map((target) => <p key={target} className='labelCreatePokemon labelError'>{errors[target]}</p>)
+    const listErrors = Object.keys(errors).map((target) => <p key={target} className='labelCreatePokemon labelError'>{`>> ${errors[target]}`}</p>)
     return <div className='divErrors'>{listErrors}</div>
   }
 
@@ -81,7 +85,7 @@ export default function CreatePokemon() {
 
   const handleCheck = (event) => {
     var updatedList = [...checked];
-
+console.log(event);
     if (event.target.checked) {
       if (updatedList.length < 2)
         updatedList = [...checked, event.target.value];
@@ -107,19 +111,36 @@ export default function CreatePokemon() {
     )
   })
 
-  const sendForm = (e) => {
+  const sendForm = async (e) => {
     e.preventDefault()
-    if (checked.length === 0) {
-      if (Object.keys(errors).length > 0) {
-        setErrors({ ...errors, 'Tipo': `El pokemon debe de tener almenos 1 Tipo` })
-      } else {
-        setErrors({ 'Tipo': `El pokemon debe de tener almenos 1 Tipo` })
+    const valCreation = window.confirm('¿Seguro que deseas crear este Pokemon?\n(Cualquier estadistica que no haya sido proporcionada,\nse colocara en cero)')
+    if (valCreation) {
+      const typ= checked.map((t)=>{
+        return listTypes.find((item)=>item.Nombre===t).ID
+      })
+      const cpPokemon = {
+        ...pokemon,
+        Imagen: pokemon['Imagen'] ? pokemon['Imagen'] : 'https://cdn-icons-png.flaticon.com/512/3088/3088877.png',
+        Vida: pokemon['Vida'] ? pokemon['Vida'] : 0,
+        Ataque: pokemon['Ataque'] ? pokemon['Ataque'] : 0,
+        Defensa: pokemon['Defensa'] ? pokemon['Defensa'] : 0,
+        Velocidad: pokemon['Velocidad'] ? pokemon['Velocidad'] : 0,
+        Ataque_Especial: pokemon['Ataque_Especial'] ? pokemon['Ataque_Especial'] : 0,
+        Defensa_Especial: pokemon['Defensa_Especial'] ? pokemon['Defensa_Especial'] : 0,
+        Altura: pokemon['Altura'] ? pokemon['Altura'] : 0,
+        Peso: pokemon['Peso'] ? pokemon['Peso'] : 0,
+        Tipo: typ
       }
-    } else {
+
       try {
-
+        const { data } = await axios.post('http://localhost:3001/pokemons', cpPokemon)
+        dispatch(addNewPokemon(data))
+        setChecked([])
+        setPokemon({})
+        setErrors([])
+        navigate('/details/' + data.ID)
       } catch (error) {
-
+        alert(error.response.data.Error)
       }
     }
   }
@@ -129,42 +150,43 @@ export default function CreatePokemon() {
       <div className='divDetailsPokemon'>
         <div className='divDataPokemon'>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon '>Nombre: </label>
+            <label className={`labelCreatePokemon ${errors['Nombre'] ? 'labelError' : null}`}>Nombre: </label>
             <input className='InputCreatePokemon' type="text" name='Nombre' onChange={handleFormInput} />
           </div>
-          <div className='divInputCreatePokemon'></div>
-          <label className='labelCreatePokemon'>URL de Imagen: </label>
-          <input className='InputCreatePokemon' type="text" name='Imagen' onChange={handleFormInput} />
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Altura: </label>
+            <label className={`labelCreatePokemon ${errors['Imagen'] ? 'labelError' : null}`}>URL de Imagen: </label>
+            <input className='InputCreatePokemon' type="text" name='Imagen' onChange={handleFormInput} />
+          </div>
+          <div className='divInputCreatePokemon'>
+            <label className={`labelCreatePokemon ${errors['Altura'] ? 'labelError' : null}`}>Altura: </label>
             <input className='InputCreatePokemon' type="text" name='Altura' onChange={handleFormInput} />
           </div>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Peso: </label>
+            <label className={`labelCreatePokemon ${errors['Peso'] ? 'labelError' : null}`}>Peso: </label>
             <input className='InputCreatePokemon' type="text" name='Peso' onChange={handleFormInput} />
           </div>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Vida: </label>
+            <label className={`labelCreatePokemon ${errors['Vida'] ? 'labelError' : null}`}>Vida: </label>
             <input className='InputCreatePokemon' type="text" name='Vida' onChange={handleFormInput} />
           </div>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Velocidad: </label>
+            <label className={`labelCreatePokemon ${errors['Velocidad'] ? 'labelError' : null}`}>Velocidad: </label>
             <input className='InputCreatePokemon' type="text" name='Velocidad' onChange={handleFormInput} />
           </div>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Ataque: </label>
+            <label className={`labelCreatePokemon ${errors['Ataque'] ? 'labelError' : null}`}>Ataque: </label>
             <input className='InputCreatePokemon' type="text" name='Ataque' onChange={handleFormInput} />
           </div>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Defensa: </label>
+            <label className={`labelCreatePokemon ${errors['Defensa'] ? 'labelError' : null}`}>Defensa: </label>
             <input className='InputCreatePokemon' type="text" name='Defensa' onChange={handleFormInput} />
           </div>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Ataque Especial: </label>
+            <label className={`labelCreatePokemon ${errors['Ataque_Especial'] ? 'labelError' : null}`}>Ataque Especial: </label>
             <input className='InputCreatePokemon' type="text" name='Ataque_Especial' onChange={handleFormInput} />
           </div>
           <div className='divInputCreatePokemon'>
-            <label className='labelCreatePokemon'>Defensa Especial: </label>
+            <label className={`labelCreatePokemon ${errors['Defensa_Especial'] ? 'labelError' : null}`}>Defensa Especial: </label>
             <input className='InputCreatePokemon' type="text" name='Defensa_Especial' onChange={handleFormInput} />
           </div>
 
@@ -174,12 +196,12 @@ export default function CreatePokemon() {
           {pokemon['Imagen'] ? <img className='previewImage' src={pokemon.Imagen} alt="previewImage" /> : null}
         </div>
       </div>
-      <label className='labelCreatePokemon labelTypes'>Tipos: </label>
+      <label className={`labelCreatePokemon labelTypes ${errors['Tipo'] ? 'labelError' : null}`}>Tipos: </label>
       <div className='divTypes'>
         {listTypes ? lista : null}
       </div>
       <div className='divButtonCreatePokemon'>
-      <button className='buttonCreatePokemon' onClick={sendForm}>Crear Pokemon</button>
+        {pokemon['Nombre'] && Object.keys(errors).length === 0 ? <button className='buttonCreatePokemon' onClick={sendForm}>Crear Pokemon</button> : null}
       </div>
     </form>
   )

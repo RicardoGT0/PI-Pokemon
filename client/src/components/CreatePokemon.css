@@ -52,14 +52,15 @@
 
 .divPreviewImage{
     backdrop-filter: blur(30px); 
-    padding-right: 20px;
+    margin-right: 20px; 
 }
 
 .previewImage{
     border-style: groove;
     border-color: white;
     border-radius: 5%;
-    height: fit-content;
+    /* height: fit-content; */
+    height: 300px;
 }
 
 .labelTypes{
