@@ -16,15 +16,10 @@ export const accessOff = () => {
     }
 }
 
-export const getAllPokes = () => (dispatch) => {
-    for (let i = 1; i <= 2; i++) {  //86 paginado maximo
-        axios.get('http://localhost:3001/pokemons', { params: { page: i } })
-            .then(resp => {
-                dispatch({
-                    type: action.GETALLPOKES,
-                    payload: resp.data
-                })
-            })
+export const getAllPokes = (data) => {
+    return {
+        type: action.GETALLPOKES,
+        payload: data
     }
 }
 
@@ -53,14 +48,14 @@ export const setPokemonByName = (name) => async (dispatch) => {
     }
 }
 
-export const setShowPokemon = (page)  => {
-   return{
-            type: action.SETSHOWPOKEMON,
-            payload: page
-        }
+export const setShowPokemon = (page) => {
+    return {
+        type: action.SETSHOWPOKEMON,
+        payload: page
+    }
 }
 
-export const addNewPokemon=(newPokemon)=>{
+export const addNewPokemon = (newPokemon) => {
     return {
         type: action.ADDNEWPOKEMON,
         payload: newPokemon,

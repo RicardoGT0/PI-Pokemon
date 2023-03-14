@@ -8,6 +8,7 @@ const initialState = {
     access: true,
     allPokemon: [],
     pokeShow: [],
+    pokefound: [],
     filter: {},
     sort: {}
 }
@@ -35,13 +36,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case action.GETALLPOKES:
             return {
                 ...state,
-                allPokemon: [...state.allPokemon, ...payload]
+                allPokemon: [...state.allPokemon, ...payload],
+                pokefound: [...state.allPokemon, ...payload]
             }
         case action.SETFILTER:
             return {
                 ...state,
                 filter: { ...state.filter, ...payload },
-                pokeShow: state.allPokemon
+                pokefound: state.allPokemon
                     .filter((pok) => {
                         if (!payload['Origen'])
                             return pok
@@ -68,11 +70,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
                     })
             }
         case action.SETSORT:
-            let tempState = [...state.pokeShow]
+            let tempState = [...state.pokefound]
             return {
                 ...state,
                 sort: { ...state.sort, ...payload },
-                pokeShow: tempState.sort((x, y) => {
+                pokefound: tempState.sort((x, y) => {
                     if (payload['Orden Alfabetico'] && payload['Orden Alfabetico'].length > 0) {
                         if (payload['Orden Alfabetico'][0] === "Z-A") return y.Nombre.localeCompare(x.Nombre)
                         if (payload['Orden Alfabetico'][0] === "A-Z") return x.Nombre.localeCompare(y.Nombre)
@@ -87,18 +89,19 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case action.SETPOKEMONBYNAME:
             return {
                 ...state,
-                pokeShow: [payload]
+                pokefound: [payload]
             }
         case action.ADDNEWPOKEMON:
             return {
                 ...state,
-                pokeShow: [...state.pokeShow, payload],
+                pokefound: [...state.pokefound, payload],
                 allPokemon: [...state.allPokemon, payload],
             }
         case action.SETSHOWPOKEMON:
+
             return {
                 ...state,
-                pokeShow: state.allPokemon.slice(12 * (payload - 1), 12 * payload)
+                pokeShow: state.pokefound.slice(12 * (payload - 1), 12 * payload)
             }
 
 

@@ -1,22 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { setShowPokemon } from '../redux/actions';
+import React from 'react'
+import { useSelector } from 'react-redux';
 import Card from './Card'
 import './Home.css'
+import PagesBar from './PagesBar';
 import Searchbar from './Searchbar'
 
-
 export default function Home() {
-  const { pokeShow, allPokemon } = useSelector((state) => state);
-  const [totalPages, setTotalPages] = useState(0)
-  const [actualPage, setActualPage] = useState(1)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    setTotalPages(Math.ceil(allPokemon.length/12))
-    dispatch(setShowPokemon(actualPage))
-  }, [actualPage])
-
+  const { pokeShow } = useSelector((state) => state);
 
   const cards = pokeShow.map((pokemon, index) => {
     return (
@@ -29,9 +19,6 @@ export default function Home() {
     )
   })
 
-  const nextPage=()=>{    
-    setActualPage(actualPage+1)
-  }
   return (
     < >
       <Searchbar />
@@ -44,6 +31,7 @@ export default function Home() {
         />
         {cards}
       </div>
+      <PagesBar />
     </>
   )
 }
