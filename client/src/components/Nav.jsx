@@ -32,7 +32,7 @@ export default function Nav() {
         <div className='linkBox'>
           {location.pathname !== '/home' ? <Link to="home" className='enlaces'>Pokédex</Link> : null}
           {location.pathname !== '/profile' ? <Link to="profile" className='enlaces'>Perfil</Link> : null}
-          {location.pathname !== '/team' ? <Link to="team" className='enlaces'>Equipo</Link> : null}
+          {/* {location.pathname !== '/team' ? <Link to="team" className='enlaces'>Equipo</Link> : null} */}
           {location.pathname !== '/about' ? <Link to="about" className='enlaces'>Acerca de</Link> : null}
           <button className='enlaces enlacesBoton' onClick={() => { dispatch(accessOff()) }}>LogOut</button>
         </div>
