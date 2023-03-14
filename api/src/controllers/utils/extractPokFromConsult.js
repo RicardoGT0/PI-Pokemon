@@ -6,8 +6,8 @@ module.exports=(pok) => {
     resultado = {
         ...pok.dataValues,
         ID: pok.dataValues.ID + 1008,
-        Tipos: tipos
+        Tipo: tipos
     }
-
+    delete resultado.Tipos
     return resultado
 }
