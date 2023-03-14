@@ -41,16 +41,29 @@ export const setSort = (sort) => {
     }
 }
 
-export const setShowPokemon=(name)=>async(dispatch)=>{
+export const setPokemonByName = (name) => async (dispatch) => {
     try {
-        const {data} = await axios.get('http://localhost:3001/pokemons?name=' + name)        
+        const { data } = await axios.get('http://localhost:3001/pokemons?name=' + name)
         dispatch({
-            type: action.SETSHOWPOKEMON,
+            type: action.SETPOKEMONBYNAME,
             payload: data
         })
     } catch (error) {
-        
+        console.log(error.response.data.Error)
     }
-    
+}
+
+export const setShowPokemon = (page)  => {
+   return{
+            type: action.SETSHOWPOKEMON,
+            payload: page
+        }
+}
+
+export const addNewPokemon=(newPokemon)=>{
+    return {
+        type: action.ADDNEWPOKEMON,
+        payload: newPokemon,
+    }
 }
 

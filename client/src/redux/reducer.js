@@ -4,7 +4,7 @@ const initialState = {
     user: {
         id: 8,
         userName: 'pe@hot.com'
-      },
+    },
     access: true,
     allPokemon: [],
     pokeShow: [],
@@ -35,8 +35,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case action.GETALLPOKES:
             return {
                 ...state,
-                allPokemon: [...state.allPokemon, ...payload],
-                pokeShow: [...state.pokeShow, ...payload],
+                allPokemon: [...state.allPokemon, ...payload]
             }
         case action.SETFILTER:
             return {
@@ -85,11 +84,24 @@ export default function rootReducer(state = initialState, { type, payload }) {
                     return 0
                 })
             }
-            case action.SETSHOWPOKEMON:
-                return{
-                    ...state,
-                    pokeShow:[payload]
-                }
+        case action.SETPOKEMONBYNAME:
+            return {
+                ...state,
+                pokeShow: [payload]
+            }
+        case action.ADDNEWPOKEMON:
+            return {
+                ...state,
+                pokeShow: [...state.pokeShow, payload],
+                allPokemon: [...state.allPokemon, payload],
+            }
+        case action.SETSHOWPOKEMON:
+            return {
+                ...state,
+                pokeShow: state.allPokemon.slice(12 * (payload - 1), 12 * payload)
+            }
+
+
         default:
             return state
     }
