@@ -5,32 +5,32 @@ const readTeam = require("../controllers/team/readTeam");
 
 const routes = new Router();
 
-routes.get('/:id', async (req, res) => {
-    const { id } = req.params
+routes.get('/:UserID', async (req, res) => {
+    const { UserID } = req.params
     try {
-        const respuesta = await readTeam(id)
+        const respuesta = await readTeam(UserID)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
     }
 });
 
-routes.post('/:id', async (req, res) => {
-    const { id } = req.params //user ID
-    const { poke, member } = req.body //pokemon ID, memberID
+routes.post('/:UserID', async (req, res) => {
+    const { UserID } = req.params //user ID
+    const { PokemonID, memberID } = req.body //pokemon ID, memberID
     try {
-        const respuesta = await addOfTeam(id, poke, member)
+        const respuesta = await addOfTeam(UserID, PokemonID, memberID)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
     }
 });
 
-routes.delete('/:id', async (req, res) => {
-    const { id } = req.params //user ID
-    const { member } = req.query //member ID
+routes.delete('/:UserID', async (req, res) => {
+    const { UserID } = req.params //user ID
+    const { memberID } = req.query //member ID
     try {
-        const respuesta = await deleteOfTeam(id, member)
+        const respuesta = await deleteOfTeam(UserID, memberID)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({ Error: error.message })
