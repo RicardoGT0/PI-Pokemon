@@ -39,50 +39,57 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 allPokemon: [...state.allPokemon, ...payload],
                 pokefound: [...state.allPokemon, ...payload]
             }
-        case action.SETFILTER:
+
+        case action.SETPOKEFOUND:
             return {
                 ...state,
-                filter: { ...state.filter, ...payload },
-                pokefound: state.allPokemon
-                    .filter((pok) => {
-                        if (!payload['Origen'])
-                            return pok
-                        else {
-                            if (payload['Origen'].length > 1 || payload['Origen'].length === 0)
-                                return pok
-                            if (payload['Origen'][0] === 'Oficiales')
-                                return pok.ID <= 1008
-                            else
-                                return pok.ID > 1008
-                        }
-                    })
-                    .filter((pok) => {
-                        if (!payload['Tipos'])
-                            return pok
-                        else {
-                            if (payload['Tipos'].length === 0)
-                                return pok
-                            if (payload['Tipos'].length > 1)
-                                return payload['Tipos'].includes(pok.Tipo[0]) && payload['Tipos'].includes(pok.Tipo[1])
-                            else
-                                return payload['Tipos'].includes(pok.Tipo[0]) || payload['Tipos'].includes(pok.Tipo[1])
-                        }
-                    })
+                pokefound: [...state.allPokemon]
+            }
+
+        case action.SETFILTER:
+            const fil = { ...state.filter, ...payload }
+            const orig = state.allPokemon.filter((pok) => {
+                if (!fil['Origen'])
+                    return pok
+                else {
+                    if (fil['Origen'].length > 1 || fil['Origen'].fil === 0)
+                        return pok
+                    if (fil['Origen'][0] === 'Oficiales')
+                        return pok.ID <= 1008
+                    else
+                        return pok.ID > 1008
+                }
+            })
+            const typ = orig.filter((pok) => {
+                if (!fil['Tipos'])
+                    return pok
+                else {
+                    if (fil['Tipos'].length === 0)
+                        return pok
+                    if (fil['Tipos'].length > 1)
+                        return fil['Tipos'].includes(pok.Tipo[0]) && fil['Tipos'].includes(pok.Tipo[1])
+                    else
+                        return fil['Tipos'].includes(pok.Tipo[0]) || fil['Tipos'].includes(pok.Tipo[1])
+                }
+            })
+            return {
+                ...state,
+                filter: fil,
+                pokefound: typ
+
             }
         case action.SETSORT:
             let tempState = [...state.pokefound]
+            const sor = { ...state.sort, ...payload }
             return {
                 ...state,
-                sort: { ...state.sort, ...payload },
+                sort: sor,
                 pokefound: tempState.sort((x, y) => {
-                    if (payload['Orden Alfabetico'] && payload['Orden Alfabetico'].length > 0) {
-                        if (payload['Orden Alfabetico'][0] === "Z-A") return y.Nombre.localeCompare(x.Nombre)
-                        if (payload['Orden Alfabetico'][0] === "A-Z") return x.Nombre.localeCompare(y.Nombre)
-                    }
-                    if (payload['Orden por Ataque'] && payload['Orden por Ataque'].length > 0) {
-                        if (payload['Orden por Ataque'][0] === "Ataque Ascendente") return x.Ataque - y.Ataque
-                        if (payload['Orden por Ataque'][0] === "Ataque Descendente") return y.Ataque - x.Ataque
-                    }
+                    if (sor['Orden por Ataque'] === "Ataque Ascendente") return x.Ataque - y.Ataque
+                    if (sor['Orden por Ataque'] === "Ataque Descendente") return y.Ataque - x.Ataque
+
+                    if (sor['Orden Alfabetico'] === "Z-A") return y.Nombre.localeCompare(x.Nombre)
+                    if (sor['Orden Alfabetico'] === "A-Z") return x.Nombre.localeCompare(y.Nombre)
                     return 0
                 })
             }

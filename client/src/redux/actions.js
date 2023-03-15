@@ -62,3 +62,9 @@ export const addNewPokemon = (newPokemon) => {
     }
 }
 
+export const setPokefound=()=>{
+    return{
+        type: action.SETPOKEFOUND,
+    }
+}
+
