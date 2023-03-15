@@ -8,21 +8,24 @@ import './Login.css'
 export default function Login() {
   const [loading, setLoading] = useState(true)
   const { allPokemon } = useSelector((state) => state);
+  const [valProgress, setValProgress] = useState(0)
   const dispatch = useDispatch()
 
 
   useEffect(() => {
+    const lowLimit = 70
+    const topLimit = 86
     if (allPokemon.length === 0) {
       setLoading(true)
-      for (let i = 70; i < 86; i++) {  //86 paginado maximo
+      for (let i = lowLimit; i < topLimit; i++) {  //86 paginado maximo
         axios.get('http://localhost:3001/pokemons', { params: { page: i } })
           .then(resp => {
             dispatch(getAllPokes(resp.data))
           })
       }
     }
-
-    if (allPokemon.length >= 180) {
+    setValProgress(allPokemon.length / ((topLimit - lowLimit - 1) * 12))
+    if (allPokemon.length >= ((topLimit - lowLimit - 1) * 12)) {
       setLoading(false)
     }
   }, [allPokemon])
@@ -36,6 +39,7 @@ export default function Login() {
           </video>
         </div>
         <h1 className='textLoading'> Cargando ... </h1>
+        <progress value={valProgress} />
       </div>
     )
   } else {
