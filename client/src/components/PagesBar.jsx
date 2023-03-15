@@ -11,7 +11,7 @@ export default function PagesBar() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const total=Math.ceil(pokefound.length / 12)
+        const total = Math.ceil(pokefound.length / 12)
         setTotalPages(total)
         if (actualPage > total) {
             setActualPage(1)
@@ -20,12 +20,10 @@ export default function PagesBar() {
         }
         dispatch(setShowPokemon(actualPage))
         setInput(actualPage)
-
-
     }, [actualPage, pokefound])
 
     const nextPage = () => {
-        setActualPage(actualPage + 1)
+        setActualPage(1 + actualPage)
     }
     const prevPage = () => {
         setActualPage(actualPage - 1)
@@ -37,8 +35,7 @@ export default function PagesBar() {
         else if (target.value < 1)
             setInput(1);
         else
-            setInput(target.value);
-
+            setInput(Number(target.value));
     }
 
     const submit = (e) => {
