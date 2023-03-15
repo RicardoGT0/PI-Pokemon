@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { setPokemonByName } from '../redux/actions';
+import { setPokefound, setPokemonByName } from '../redux/actions';
 import './Searchbar.css'
 
 export default function SearchField() {
@@ -14,7 +14,10 @@ export default function SearchField() {
 
     const onSearch = async (event) => {
         event.preventDefault()
-        dispatch(setPokemonByName(input))
+        if (input === "")
+            dispatch(setPokefound())
+        else
+            dispatch(setPokemonByName(input))
     }
 
     return (
