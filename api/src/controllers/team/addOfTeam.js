@@ -4,7 +4,6 @@ module.exports = async (UserID, PokemonID, memberID) => {
     UserID = Number(UserID)
     PokemonID = Number(PokemonID)
     memberID = Number(memberID)
-    console.log(UserID, PokemonID, memberID)
 
     const actualizado = await Team.update(
         { PokemonID },

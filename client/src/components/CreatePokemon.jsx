@@ -85,7 +85,6 @@ export default function CreatePokemon() {
 
   const handleCheck = (event) => {
     var updatedList = [...checked];
-console.log(event);
     if (event.target.checked) {
       if (updatedList.length < 2)
         updatedList = [...checked, event.target.value];

@@ -18,7 +18,6 @@ const getAllPokeNames = async (Pokemon) => {
         pokes.forEach(element => {
             pokeNames.push(element.Nombre)
         });
-        console.log('Pokemons Registrados: ', pokeNames.length);
     }
 }
 
