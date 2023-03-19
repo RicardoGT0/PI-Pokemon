@@ -1,6 +1,68 @@
-.divTeam{
+.divTeam {
     background: url("/images/FondoTeam.jpg");
     background-attachment: fixed;
-    height: 84vh;
-    background-repeat: round;
+    text-align: -webkit-center;
+}
+
+.divCardsTeam {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-between;
+    padding: 70px;
+}
+
+.divCardTeam {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonRemove {
+    font-size: xx-large;
+    font-style: oblique;
+    font-weight: bold;
+    border-style: none;
+    background: none;
+    border-radius: 20px;
+    border-color: white;
+    border-style: groove;
+    border-width: 7px;
+    backdrop-filter: blur(30px);
+    width: 200px;
+}
+
+.buttonRemove:active {
+    backdrop-filter: blur(10px);
+}
+
+.buttonRemove:hover {
+    color: red;
+    border-color: red;
+    -webkit-text-stroke: 1px white;
+}
+
+.divHeaderTeam {
+    background-color: black;
+    display: flow-root;
+}
+
+.headerTeamText {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: xx-large;
+}
+
+.divSearchTeam{
+    justify-content: center;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    background-color: black;
+
+}
+.inputSearchTeam{
+    width: 700px;
 }
