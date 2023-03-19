@@ -21,11 +21,13 @@ export default function Filters() {
   }
 
   const listOrigins = [{ ID: 1, Nombre: 'Oficiales' }, { ID: 2, Nombre: 'Creados' }]
+  const listAtk = [{ ID: 1, Nombre: '<60' }]
 
   return (
     <div className='divFilters'>
       <FilterModel name={'Origen'} listOfFilters={listOrigins} text={'Todos los Origenes'} />
       <FilterModel name={'Tipos'} listOfFilters={filtersType} text={'Todos los Tipos'} />
+      <FilterModel name={'Ataque'} listOfFilters={listAtk} text={'Todos los Ataques'} />
     </div>
   )
 }
