@@ -2,10 +2,10 @@ import * as action from "./action_type";
 
 const initialState = {
     user: {
-        id: 8,
-        userName: 'pe@hot.com'
+        id: 0,
+        userName: ''
     },
-    access: true,
+    access: false,
     allPokemon: [],
     pokeShow: [],
     pokefound: [],
@@ -52,7 +52,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 if (!fil['Origen'])
                     return pok
                 else {
-                    if (fil['Origen'].length > 1 || fil['Origen'].fil === 0)
+                    if (fil['Origen'].length > 1 || fil['Origen'].length === 0)
                         return pok
                     if (fil['Origen'][0] === 'Oficiales')
                         return pok.ID <= 1008
@@ -72,10 +72,24 @@ export default function rootReducer(state = initialState, { type, payload }) {
                         return fil['Tipos'].includes(pok.Tipo[0]) || fil['Tipos'].includes(pok.Tipo[1])
                 }
             })
+            //atk<60
+            const atk = typ.filter((pok) => {
+                if (!fil['Ataque'])
+                    return pok
+                else {
+                    if (fil['Ataque'].length === 0)
+                        return pok
+                    if (fil['Ataque'][0] === '<60')
+                        return pok.Ataque < 60
+                    else
+                        return pok
+                }
+
+            })
             return {
                 ...state,
                 filter: fil,
-                pokefound: typ
+                pokefound: atk
 
             }
         case action.SETSORT:
