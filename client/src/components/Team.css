@@ -2,6 +2,7 @@
     background: url("/images/FondoTeam.jpg");
     background-attachment: fixed;
     text-align: -webkit-center;
+    height: 100vh;
 }
 
 .divCardsTeam {
@@ -56,13 +57,14 @@
     font-size: xx-large;
 }
 
-.divSearchTeam{
+.divSearchTeam {
     justify-content: center;
     padding-top: 0px;
     padding-bottom: 5px;
     background-color: black;
 
 }
-.inputSearchTeam{
+
+.inputSearchTeam {
     width: 700px;
 }
